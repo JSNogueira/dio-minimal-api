@@ -1,4 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
@@ -14,5 +18,8 @@ app.MapPost("/login", (minimal_api.Dominio.DTOs.LoginDTO loginDTO) =>
         return Results.Unauthorized();
     }
 });
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
